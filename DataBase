@@ -1,0 +1,6 @@
+CREATE TABLE [dbo].[Pizzas] (
+    [Id]          UNIQUEIDENTIFIER NOT NULL,
+    [NombrePizza] TEXT             NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
