@@ -18,6 +18,44 @@ namespace Insercion
         /// Método Override que recibe la entidad y la inserta en la base de datos
         /// </summary>
         /// <param name="entity"></param>
+        /// 
+        /// 
+        public void update(Pizza entity){
+            if(entity == null) {throw new Exception("No puedes insertar un null");}
+            DBConnector dbconn = new DBConnector();
+            using (dbconn)
+            {
+                var connection = dbconn.GetConnection();
+           
+                connection.Open();
+                String sql = "INSERT UPDATE Pizza set Id=@param1,name=@param2";
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@param1", entity.Id);
+                command.Parameters.AddWithValue("@param2", entity.Name);
+                command.ExecuteNonQuery();
+
+                Console.WriteLine("Pizza registrada correct" +"amente");
+                Console.ReadLine();
+            }
+        }
+        public void delete(int id){
+            if(id == null) {throw new Exception("No puedes insertar un null");}
+            
+            DBConnector dbconn = new DBConnector();
+            using (dbconn)
+            {
+                var connection = dbconn.GetConnection();
+           
+                connection.Open();
+                String sql = "delete from Pizzaswhere id= @param1";
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@param1", id);
+                command.ExecuteNonQuery();
+
+                Console.WriteLine("Pizza eliminada correctamente");
+                Console.ReadLine();
+            }
+        }
         public override void Add(Pizza entity)
         {
             if(entity == null) {throw new Exception("No puedes insertar un null");}
