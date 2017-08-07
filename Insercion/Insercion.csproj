@@ -41,10 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\paragithub\SqlandC#.cs" />
     <Compile Include="DBConnector.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="Pizza.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryGeneric.cs" />
     <Compile Include="RepositoryPizza.cs" />

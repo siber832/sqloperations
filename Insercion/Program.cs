@@ -15,6 +15,7 @@ namespace Insercion
             {
                 var repositoryPizzas = new RepositoryPizza();
                 repositoryPizzas.Add(new Pizza() { Name = "Carbonara" });
+                repositoryPizzas.delete("349c54a8-7b05-4014-847b-85a5c06bd66c");
                 repositoryPizzas.Select();
             }catch(Exception e)
             {

@@ -13,7 +13,7 @@ namespace Insercion
     public class DBConnector: IDisposable
     {
         SqlConnection connection = new SqlConnection(@"   Data Source=(localdb)\MSSQLLocalDB;
-                                                    Initial Catalog=Pizzeria;
+                                                    Initial Catalog=Pizzas;
                                                     Integrated Security=True;
                                                     Connect Timeout=30;
 

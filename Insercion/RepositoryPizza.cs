@@ -19,46 +19,64 @@ namespace Insercion
         /// </summary>
         /// <param name="entity"></param>
         /// 
-        /// 
-        public void update(Pizza entity){
-            if(entity == null) {throw new Exception("No puedes insertar un null");}
-            DBConnector dbconn = new DBConnector();
-            using (dbconn)
-            {
-                var connection = dbconn.GetConnection();
-           
-                connection.Open();
-                String sql = "INSERT UPDATE Pizza set Id=@param1,name=@param2";
-                SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@param1", entity.Id);
-                command.Parameters.AddWithValue("@param2", entity.Name);
-                command.ExecuteNonQuery();
 
-                Console.WriteLine("Pizza registrada correct" +"amente");
-                Console.ReadLine();
-            }
-        }
-        public void delete(int id){
-            if(id == null) {throw new Exception("No puedes insertar un null");}
-            
+        public void delete(String id)
+        {
+            if (id == null) { throw new Exception("No puedes insertar un null"); }
+
             DBConnector dbconn = new DBConnector();
             using (dbconn)
             {
                 var connection = dbconn.GetConnection();
-           
+
                 connection.Open();
-                String sql = "delete from Pizzaswhere id= @param1";
+                String sql = "delete from Pizzas where id= @param1";
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@param1", id);
-                command.ExecuteNonQuery();
-
+               var resultadodelete= command.ExecuteNonQuery();
+                if (resultadodelete == 0)
+                {
+                    { throw new Exception("error en el delete"); }
+                }
                 Console.WriteLine("Pizza eliminada correctamente");
                 Console.ReadLine();
             }
         }
+
+        public void update(Pizza entity)
+
+        {
+
+            if (entity == null) { throw new Exception("No puedes insertar un null"); }
+
+            base.Add(entity);
+            Console.WriteLine("Pizza registrada correctamenteasdsdasdads");
+            DBConnector dbconn = new DBConnector();
+            using (dbconn)
+            {
+                var connection = dbconn.GetConnection();
+
+                connection.Open();
+                String sql = "update Pizzas set Id=@param1,NombrePizza=@param2 where id=@param1"; 
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@param1", entity.Id);
+                command.Parameters.AddWithValue("@param2", entity.Name);
+                var resultadodelete = command.ExecuteNonQuery();
+                if (resultadodelete == 0)
+                {
+                    { throw new Exception("error en el update"); }
+                }
+
+                Console.WriteLine("Pizza actualizada");
+                Console.ReadLine();
+            }
+        }
+
         public override void Add(Pizza entity)
         {
-            if(entity == null) {throw new Exception("No puedes insertar un null");}
+           
+            if (entity == null) {throw new Exception("No puedes insertar un null");}
+            
             base.Add(entity);
             DBConnector dbconn = new DBConnector();
             using (dbconn)
@@ -67,12 +85,17 @@ namespace Insercion
            
                 connection.Open();
                 String sql = "INSERT INTO Pizzas (Id,NombrePizza) VALUES (@param1 , @param2)";
+              
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@param1", entity.Id);
                 command.Parameters.AddWithValue("@param2", entity.Name);
-                command.ExecuteNonQuery();
+                var resultadodelete = command.ExecuteNonQuery();
+                if (resultadodelete == 0)
+                {
+                    { throw new Exception("error en el insert"); }
+                }
 
-                 Console.WriteLine("Pizza registrada correctamente");
+                Console.WriteLine("Pizza registrada correctamente");
                  Console.ReadLine();
             }
         }
